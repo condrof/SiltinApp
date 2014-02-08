@@ -21,7 +21,7 @@ describe SmsRequestsController, " POST /create" do
   NO_RESPONSE_TwiML = <<-XML
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Message>Sorry, we didn't understand your request. Text HELP for help</Message>
+  <Message>Sorry, we didn't understand your request.</Message>
 </Response>
   XML
 
