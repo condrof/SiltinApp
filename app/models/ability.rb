@@ -4,9 +4,9 @@ class Ability
   def initialize(user)
 
     if user.kind_of? Supplier
-
-    elsif user.kind_of? Admin
-
+      can :manage, Product do |product|
+        product.supplier.id == current_supplier.id
+      end
     end
     # Define abilities for the passed in user here. For example:
     #
