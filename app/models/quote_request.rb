@@ -9,6 +9,10 @@ class QuoteRequest
     @product = args.fetch(:product)
   end
 
+  def perform
+    "Would have searched for #{request.product} near #{request.location}"
+  end
+
   def ==(other)
     other.location == location &&
     other.product == product

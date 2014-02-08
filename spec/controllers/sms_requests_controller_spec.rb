@@ -35,7 +35,9 @@ XML
 
   it "sends the response message when it can understand the message" do
     message = "Your Results"
-    SmsRequestHandler.should_receive(:perform).and_return(message)
+    sms_request =  "Quote: Bo Seat"
+    request_double = double(perform: message)
+    SmsRequestParser.should_receive(:parse).with(sms_request).and_return(request_double)
     do_action(Body: "Quote: Bo Seat")
     response.body.should == response_twiml(message)
   end

@@ -4,8 +4,7 @@ class SmsRequestsController < ApplicationController
   def create
     sms_request = SmsRequestParser.parse(params[:Body])
     xml = if sms_request
-      message = SmsRequestHandler.perform(sms_request)
-      sms_response message
+      sms_response sms_request.perform
     else
       sms_response "Sorry, we didn't understand your request."
     end
