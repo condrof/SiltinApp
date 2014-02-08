@@ -46,4 +46,5 @@ end
 50.times { Fabricate(:product, unit_id: Unit.first.id) }
 150.times { Fabricate(:inventory) }
 
+Admin.create(email: 'admin@siltinapp.com', password: 'password', password_confirmation: 'password')
 

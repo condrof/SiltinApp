@@ -6,7 +6,7 @@ module ApplicationHelper
     end
 
     if flash[:notice]
-      content << content_tag(:div, flash[:notice], class: 'alert alert-notice')
+      content << content_tag(:div, flash[:notice], class: 'alert alert-info')
     end
     content.inject(:<<)
   end
