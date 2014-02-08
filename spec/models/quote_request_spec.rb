@@ -5,6 +5,10 @@ describe QuoteRequest, ".perform" do
   let(:location_name) { "Bo" }
   let(:product_name) { "seat" }
 
+  before do
+    subject.stub(:geocode).and_return([0, 0])
+  end
+
   it "returns location not found message if it can't find the location" do
     subject.stub(:geocode).and_return([nil, nil])
     expect(subject.perform).to eql("Sorry, couldn't find #{location_name}")
