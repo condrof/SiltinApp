@@ -1,4 +1,5 @@
 Siltin::Application.routes.draw do
+  devise_for :admins, skip: [:registrations, :confirmations]
   resources :inventories
   resources :products
   resources :sms_requests

@@ -30,3 +30,5 @@ end
 10.times { Fabricate(:supplier) }
 50.times { Fabricate(:product) }
 150.times { Fabricate(:inventory) }
+
+Admin.create(email: 'admin@siltinapp.com', password: 'password', password_confirmation: 'password')
