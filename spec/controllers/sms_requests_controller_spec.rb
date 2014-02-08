@@ -18,15 +18,25 @@ describe SmsRequestsController, " POST /create" do
     post :create, defaults.merge(options)
   end
 
-  NO_RESPONSE_TwiML = <<-XML
+  def response_twiml(message)
+<<-XML
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Message>Sorry, we didn't understand your request.</Message>
+  <Message>#{message}</Message>
 </Response>
-  XML
+XML
+  end
 
   it "sends don't understand reply when it can't understand the message" do
+    message = "Sorry, we didn't understand your request."
     do_action(Body: "qwertyouip")
-    response.body.should == NO_RESPONSE_TwiML
+    response.body.should == response_twiml(message)
+  end
+
+  it "sends the response message when it can understand the message" do
+    message = "Your Results"
+    SmsRequestHandler.should_receive(:perform).and_return(message)
+    do_action(Body: "Quote: Bo Seat")
+    response.body.should == response_twiml(message)
   end
 end

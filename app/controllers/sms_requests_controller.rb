@@ -3,13 +3,19 @@ class SmsRequestsController < ApplicationController
 
   def create
     sms_request = SmsRequestParser.parse(params[:Body])
-    if sms_request
-      raise "Shouldn't understand stuff yet"
+    xml = if sms_request
+      message = SmsRequestHandler.perform(sms_request)
+      sms_response message
     else
-      xml = Twilio::TwiML.build do |response|
-        response.message "Sorry, we didn't understand your request."
-      end
+      sms_response "Sorry, we didn't understand your request."
     end
     render xml: xml
+  end
+
+  private
+  def sms_response(message)
+    Twilio::TwiML.build do |response|
+      response.message message
+    end
   end
 end
