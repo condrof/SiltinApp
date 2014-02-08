@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.1.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -50,3 +51,7 @@ gem 'pry-rails'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :production do
+  gem 'rails_12factor' # for heroku
+end
