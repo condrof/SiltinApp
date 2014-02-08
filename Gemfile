@@ -47,6 +47,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'fog', '~> 1.3.1'
 gem 'simple_form_fancy_uploads'
+gem 'cancan'
 
 gem 'faker'
 gem 'fabrication'
