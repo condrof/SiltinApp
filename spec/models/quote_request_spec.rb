@@ -5,6 +5,11 @@ describe QuoteRequest, ".perform" do
   let(:location_name) { "Bo" }
   let(:product_name) { "seat" }
 
+  it "returns location not found message if it can't find the location" do
+    subject.stub(:geocode).and_return([nil, nil])
+    expect(subject.perform).to eql("Sorry, couldn't find #{location_name}")
+  end
+
   it "returns not found message if can't find products" do
     subject.stub(:search).and_return([])
     expect(subject.perform).to eql("Sorry, nothing found for #{product_name} near #{location_name}")
@@ -23,15 +28,17 @@ describe QuoteRequest, ".search" do
   let(:location_name) { "Bo" }
   let(:product_name) { "findme" }
 
-  it "geocodes the location"
-
   it "returns inventories for products that match the product name" do
     dont_find_product = Fabricate(:product, name: "notme thing")
     find_product = Fabricate(:product, name: "findme thing")
-    supplier = Fabricate(:supplier)
-    dont_find_inventory = Fabricate(:inventory, supplier: supplier, product: dont_find_product)
-    find_inventory = Fabricate(:inventory, supplier: supplier, product: find_product)
+    find_supplier = Fabricate(:supplier, latitude: 0, longitude: 0)
+    dont_find_supplier = Fabricate(:supplier, latitude: 40, longitude: 40)
+    dont_find_inventory1 = Fabricate(:inventory, supplier: find_supplier, product: dont_find_product)
+    dont_find_inventory2 = Fabricate(:inventory, supplier: dont_find_supplier, product: find_product)
+    find_inventory = Fabricate(:inventory, supplier: find_supplier, product: find_product)
 
-    QuoteRequest.new(location: location_name, product: product_name).search.should == [find_inventory]
+    qr = QuoteRequest.new(location: location_name, product: product_name)
+    qr.stub(:geocode).and_return([0, 0])
+    qr.search.should == [find_inventory]
   end
 end
