@@ -6,6 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+ActiveRecord::Base.establish_connection
+ActiveRecord::Base.connection.tables.each do |table|
+  next if table == 'schema_migrations'
+
+  ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
+
+end
+
 Fabricator(:supplier) do
   email { Faker::Internet.safe_email }
   created_at { DateTime.now }
@@ -34,7 +42,8 @@ end
 
 
 10.times { Fabricate(:supplier) }
-50.times { Fabricate(:product) }
-150.times { Fabricate(:inventory) }
 ["kg", "nr", "m2"].each {|new_name| Fabricate(:unit, name: new_name )}
+50.times { Fabricate(:product, unit_id: Unit.first.id) }
+150.times { Fabricate(:inventory) }
+
 

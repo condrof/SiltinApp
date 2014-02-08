@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
-	has_many :inventories
-	has_many :suppliers, through: :inventories, :foreign_key => :product_id
-	belongs_to :unit
+  has_many :inventories
+  has_many :suppliers, through: :inventories, :foreign_key => :product_id
+  belongs_to :unit
+  mount_uploader :image, ProductImageUploader
 
 end

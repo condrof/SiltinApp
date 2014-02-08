@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.all.includes(:unit)
   end
 
   # GET /products/1
@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @product = Product.new(product_params.permit(:unit_id, :name, :image))
 
     respond_to do |format|
       if @product.save
@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
-      if @product.update(product_params)
+      if @product.update(product_params.permit(:unit_id, :name, :image))
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
@@ -70,5 +70,5 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params[:product]
-    end	
+    end
 end

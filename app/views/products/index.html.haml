@@ -5,9 +5,12 @@
     %th
     %th
     %th
+    %th
 
   - @products.each do |product|
     %tr
+      %td= product.name
+      %td= image_tag product.image.url(:thumb)
       %td= link_to 'Show', product
       %td= link_to 'Edit', edit_product_path(product)
       %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }

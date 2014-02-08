@@ -41,7 +41,10 @@ end
 gem 'bootstrap-sass'
 gem 'pry-rails'
 gem 'simple_form'
-gem "carrierwave"
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'fog', '~> 1.3.1'
+gem 'simple_form_fancy_uploads'
 
 gem 'faker'
 gem 'fabrication'
