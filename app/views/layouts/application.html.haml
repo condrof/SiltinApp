@@ -15,10 +15,10 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   %body
     - if current_supplier
-      = link_to "Log out", destroy_supplier_session_url, class: "btn btn-info"
+      = link_to "Log out", destroy_supplier_session_url, method: :delete, class: "btn btn-info pull-right"
     - else
-      = link_to "Admin", new_admin_session_url, class: "btn btn-success"
-      = link_to "Supplier", new_supplier_session_url, class: "btn btn-warning"
+      = link_to "Admin", new_admin_session_url, class: "btn btn-success pull-right"
+      = link_to "Supplier", new_supplier_session_url, class: "btn btn-warning pull-right"
     = #render 'header'
     = flash_messages
     = yield
