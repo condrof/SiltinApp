@@ -41,6 +41,8 @@ end
 gem 'bootstrap-sass'
 gem 'pry-rails'
 
+gem 'faker'
+gem 'fabrication'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
