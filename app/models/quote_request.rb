@@ -10,7 +10,25 @@ class QuoteRequest
   end
 
   def perform
-    "Would have searched for #{request.product} near #{request.location}"
+    inventories = search
+    if inventories.empty?
+      "Sorry, nothing found for #{product} near #{location}"
+    else
+      message = ["Nearest suppliers for #{product}"]
+      inventories.map do |inventory|
+        message << "#{inventory.supplier.email}: #{"%0.2f" % inventory.price}"
+      end
+      message.join("\n")
+    end
+  end
+
+  def search
+    # geocode location (maybe allow for lat/long to be passed in too)
+    # search based on product name, maybe allow product to be passed in as a model too
+    Inventory.where("products.name ILIKE ?", "%#{product}%").
+      includes(:product, :supplier).
+      limit(5).
+      order("price ASC")
   end
 
   def ==(other)
