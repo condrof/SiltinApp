@@ -40,6 +40,8 @@ end
 
 gem 'bootstrap-sass'
 gem 'pry-rails'
+gem 'simple_form'
+gem "carrierwave"
 
 gem 'faker'
 gem 'fabrication'

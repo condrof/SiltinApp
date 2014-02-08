@@ -27,6 +27,14 @@ Fabricator(:inventory) do
   updated_at { DateTime.now }
 end
 
+Fabricator(:unit) do
+  created_at { DateTime.now }
+  updated_at { DateTime.now }
+end
+
+
 10.times { Fabricate(:supplier) }
 50.times { Fabricate(:product) }
 150.times { Fabricate(:inventory) }
+["kg", "nr", "m2"].each {|new_name| Fabricate(:unit, name: new_name )}
+
