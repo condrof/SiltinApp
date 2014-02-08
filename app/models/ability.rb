@@ -8,13 +8,14 @@ class Ability
       can :manage, Inventory do |inventory|
         inventory.supplier_id == current_supplier.id
       end
-      #can :read, Product
+      can :read, Product
       can :manage, Supplier do |supplier|
         supplier.id ==current_supplier.id
       end
     elsif user.kind_of? Admin
       can :manage, Supplier
       can :manage, Inventory
+      can :manage, Product
     else
 
     end

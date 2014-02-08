@@ -14,6 +14,11 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   %body
-    = link_to "Log out", destroy_supplier_session_url, :method => :delete
+    - if current_supplier
+      = link_to "Log out", destroy_supplier_session_url, class: "btn btn-info"
+    - else
+      = link_to "Admin", new_admin_session_url, class: "btn btn-success"
+      = link_to "Supplier", new_supplier_session_url, class: "btn btn-warning"
+    = #render 'header'
     = flash_messages
     = yield

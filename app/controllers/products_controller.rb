@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params.permit(:unit_id, :name, :image))
+    @product = Product.new(product_params)
     authorize! :manage,  @product
 
     respond_to do |format|
@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
-      if @product.update(product_params.permit(:unit_id, :name, :image))
+      if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
@@ -72,6 +72,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params[:product]
+      params[:product].permit(:unit_id, :name, :image)
     end
 end

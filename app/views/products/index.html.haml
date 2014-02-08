@@ -1,20 +1,31 @@
 %h1 Listing products
 
-%table
-  %tr
-    %th
-    %th
-    %th
-    %th
+/ %table
+/   %tr
+/     %th
+/     %th
+/     %th
+/     %th
 
+/   - @products.each do |product|
+/     %tr
+/       %td= product.name
+/       %td= image_tag product.image.url(:thumb)
+/       %td= link_to 'Show', product
+/       %td= link_to 'Edit', edit_product_path(product)
+/       %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+.row
   - @products.each do |product|
-    %tr
-      %td= product.name
-      %td= image_tag product.image.url(:thumb)
-      %td= link_to 'Show', product
-      %td= link_to 'Edit', edit_product_path(product)
-      %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .col-sm-6.col-md-4.col-lg-2
+      .thumbnail
+        = link_to product do
+          image_tag product.image.url(:thumb)
+        .caption
+          %h3= product.name
+          %p lots of text
+          = link_to "View", product , html_options: {class: "btn"}
 
-%br
 
-= link_to 'New Product', new_product_path
+- if current_supplier
+  link_to 'New Product', new_product_path
