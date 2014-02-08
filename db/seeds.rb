@@ -19,6 +19,8 @@ Fabricator(:supplier) do
   created_at { DateTime.now }
   updated_at { DateTime.now }
   password { "testtest" }
+  latitude { rand(180) - 90 }
+  longitude { rand(180) - 90 }
 end
 
 Fabricator(:product) do
