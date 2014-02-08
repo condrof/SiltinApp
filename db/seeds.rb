@@ -40,8 +40,12 @@ Fabricator(:unit) do
   updated_at { DateTime.now }
 end
 
-
-10.times { Fabricate(:supplier) }
+@latlong = [ { lat: 7.964722, long: 11.738333  }, 
+             { lat: 8.633333, long: 12.05  }, 
+             { lat: 8.633333, long: 10.983333  }, 
+             { lat: 7.548889, long: 11.1875  }, 
+             { lat: 8.683333, long: 12.533333  } ]
+2.times { @latlong.each {|l| Fabricate(:supplier, latitude: l[:lat], longitude: l[:long]) } }
 ["kg", "nr", "m2"].each {|new_name| Fabricate(:unit, name: new_name )}
 50.times { Fabricate(:product, unit_id: Unit.first.id) }
 150.times { Fabricate(:inventory) }

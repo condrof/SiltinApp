@@ -3,6 +3,8 @@
 class QuoteRequest
   attr_reader :location
   attr_reader :product
+  attr_accessor :latitude
+  attr_accessor :longitude
 
   def initialize(args = {})
     @location = args.fetch(:location)
@@ -10,6 +12,11 @@ class QuoteRequest
   end
 
   def perform
+    self.latitude, self.longitude = geocode(location)
+    if latitude.nil? || longitude.nil?
+      return "Sorry, couldn't find #{location}"
+    end
+
     inventories = search
     if inventories.empty?
       "Sorry, nothing found for #{product} near #{location}"
@@ -23,12 +30,16 @@ class QuoteRequest
   end
 
   def search
-    # geocode location (maybe allow for lat/long to be passed in too)
-    # search based on product name, maybe allow product to be passed in as a model too
+    distance_sql = Supplier.send(:distance_conditions, within: 20, origin: [latitude, longitude])
     Inventory.where("products.name ILIKE ?", "%#{product}%").
+      where(distance_sql).
       includes(:product, :supplier).
       limit(5).
       order("price ASC")
+  end
+
+  def geocode(location)
+    LocationGeocoder.find(location)
   end
 
   def ==(other)
