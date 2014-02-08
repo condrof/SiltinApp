@@ -33,6 +33,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+    gem 'rspec-rails', '~> 3.0.0.beta'
+end
+
 gem 'bootstrap-sass'
 
 # Use ActiveModel has_secure_password
