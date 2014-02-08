@@ -20,6 +20,7 @@ development:
   database: siltin_development
   host: localhost
   pool: 5
+  user: siltin
   password:
 
 
@@ -49,6 +50,7 @@ test:
   encoding: unicode
   database: siltin_test
   pool: 5
+  user: siltin
   password:
 
 production:
@@ -56,4 +58,5 @@ production:
   encoding: unicode
   database: siltin_production
   pool: 5
+  user: siltin
   password:
