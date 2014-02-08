@@ -30,7 +30,7 @@ XML
   it "sends don't understand reply when it can't understand the message" do
     message = "Sorry, we didn't understand your request."
     do_action(Body: "qwertyouip")
-    response.body.should == response_twiml(message)
+    expect(response.body).to eql(response_twiml(message))
   end
 
   it "sends the response message when it can understand the message" do
@@ -39,6 +39,6 @@ XML
     request_double = double(perform: message)
     SmsRequestParser.should_receive(:parse).with(sms_request).and_return(request_double)
     do_action(Body: "Quote: Bo Seat")
-    response.body.should == response_twiml(message)
+    expect(response.body).to eql(response_twiml(message))
   end
 end
