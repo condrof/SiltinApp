@@ -1,5 +1,6 @@
 Siltin::Application.routes.draw do
   resources :inventories
+  resources :products
 
   devise_for :suppliers
   # The priority is based upon order of creation: first created -> highest priority.
