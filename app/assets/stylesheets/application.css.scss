@@ -1,5 +1,7 @@
 @import 'superhero';
 
 .spacer {  margin-top: 40px; }
-.products .thumbnail{ height: 300px}
+.products .thumbnail{ height: 300px;}
+.inventories .thumbnail{ height: 250px;}
 .thumbnail > a img {height: 200px;}
+.price{font-weight: bold;}
