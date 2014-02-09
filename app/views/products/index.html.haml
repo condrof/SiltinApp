@@ -1,14 +1,12 @@
-- @products.each_slice(6) do |slice|
+- @products.each_slice(4) do |slice|
   .row
     - slice.each do |product|
-      .col-sm-6.col-md-4.col-lg-2
+      .col-sm-6.col-md-4.col-lg-3.list-item
         .thumbnail
           = link_to product do
             = image_tag product.image.url(:thumb), alt: product.name
           .caption
             %h3= link_to product.name, product
-            %p lots of text
-            = link_to "View", product , html_options: {class: "btn"}
 
 - if current_supplier
   link_to 'New Product', new_product_path
