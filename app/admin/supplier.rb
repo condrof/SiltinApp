@@ -1,6 +1,6 @@
 ActiveAdmin.register Supplier do
 
-  permit_params :email, :latitude, :longitude
+  permit_params :email, :address, :name, :phone
 
   index do |supplier|
     column :id
