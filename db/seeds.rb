@@ -40,15 +40,31 @@ Fabricator(:unit) do
   updated_at { DateTime.now }
 end
 
-@latlong = [ { lat: 7.964722, long: 11.738333  }, 
-             { lat: 8.633333, long: 12.05  }, 
-             { lat: 8.633333, long: 10.983333  }, 
-             { lat: 7.548889, long: 11.1875  }, 
-             { lat: 8.683333, long: 12.533333  } ]
-2.times { @latlong.each {|l| Fabricate(:supplier, latitude: l[:lat], longitude: l[:long]) } }
+products = [
+  Fabricate(:product, name: "Pit Digging"),
+  Fabricate(:product, name: "Pit Liner"),
+  Fabricate(:product, name: "Latrine san-plat"),
+  Fabricate(:product, name: "Latrine slab"),
+  Fabricate(:product, name: "Latrine seat"),
+  Fabricate(:product, name: "Latrine walls"),
+  Fabricate(:product, name: "Latrine roof"),
+]
+
+latlong = [ { lat: 8.484146, long: -13.22867  }, # Freetown
+             { lat: 8.1605556, long: -12.4333333  }, # Moyamba
+             { lat: 7.288388999999999, long: -11.523228  }, # Bo
+             { lat: 8.42109, long: -12.53414  }, # Makeni
+             { lat: 9.5833333, long:  -11.55  } ] # Kabala
+
+suppliers = []
+2.times { latlong.each {|l| suppliers << Fabricate(:supplier, latitude: l[:lat], longitude: l[:long]) } }
+
 ["kg", "nr", "m2"].each {|new_name| Fabricate(:unit, name: new_name )}
-50.times { Fabricate(:product, unit_id: Unit.first.id) }
-150.times { Fabricate(:inventory) }
+
+products.each do |product|
+  suppliers.select { |s| rand > 0.5 }
+  suppliers.each { |s| Fabricate(:inventory, product: product, supplier: s) }
+end
 
 Admin.create(email: 'admin@siltinapp.com', password: 'password', password_confirmation: 'password')
 

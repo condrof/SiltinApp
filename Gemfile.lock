@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/chrismcg/geokit.git
+  revision: 4861c72eba62e5b2a047bc0fa260c3838095d448
+  specs:
+    geokit (1.8.4)
+      multi_json (>= 1.3.2)
+
+GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: 60d8be97ec2c29a871f55bd28e00ca9ec9257028
   specs:
@@ -100,8 +107,6 @@ GEM
     formatador (0.2.4)
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
-    geokit (1.8.4)
-      multi_json (>= 1.3.2)
     geokit-rails (2.0.1)
       geokit (~> 1.5)
       rails (>= 3.0)
@@ -276,6 +281,7 @@ DEPENDENCIES
   fabrication
   faker
   fog (~> 1.3.1)
+  geokit!
   geokit-rails
   haml-rails
   jbuilder (~> 1.2)
