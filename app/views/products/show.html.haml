@@ -5,11 +5,11 @@
     %h2= @product.name
     %p= @product.description
 
-.row
+.row.inventories
   %hr
   -if @inventories.empty?
-    %h1 No suppliers in your area offer this product :(
+    %h1.text-center No suppliers in your area offer this product :(
   -else
-    %h1 Suppliers in your area
+    %h1.text-center  Suppliers in your area
     =render partial: "inventories/list", locals:{inventories: @inventories}
 
