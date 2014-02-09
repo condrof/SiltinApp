@@ -2,23 +2,14 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
     if user.kind_of? Supplier
       can :read, ActiveAdmin::Page, :name => "Dashboard"
-      can :manage, Inventory do |inventory|
-        inventory.supplier_id == current_supplier.id
-      end
-      can :manage, Product do |product|
-        product.suppliers.contains(user)
-      end
-      can :manage, Supplier do |supplier|
-        supplier.id ==current_supplier.id
-      end
+      can [ :read, :update ], Inventory, supplier_id: user.id
+      can [ :read, :update ], Supplier, id: user.id
     elsif user.kind_of? Admin
       can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :manage, :all
     else
-      can :read, ActiveAdmin::Page, :name => "Dashboard"
       can :read, Product
     end
     # Define abilities for the passed in user here. For example:

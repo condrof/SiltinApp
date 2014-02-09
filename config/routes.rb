@@ -1,12 +1,12 @@
 Siltin::Application.routes.draw do
 
   devise_for :admins, skip: [:registrations, :confirmations]
+  devise_for :suppliers
   ActiveAdmin.routes(self)
   resources :inventories
   resources :products
   resources :sms_requests
 
-  devise_for :suppliers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

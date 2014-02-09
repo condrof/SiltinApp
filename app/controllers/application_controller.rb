@@ -9,7 +9,18 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= Ability.new(current_supplier)
+    @current_user = case
+                       when current_admin
+                         current_admin
+                       when current_supplier
+                         current_supplier
+                       else
+                         nil
+                       end
+  end
+
+  def current_ability
+     @current_ability ||= Ability.new(current_user)
   end
 
 end
