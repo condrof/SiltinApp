@@ -4,20 +4,19 @@ ActiveAdmin.register Supplier do
 
   index do |supplier|
     column :id
+    column :name
+    column :phone
     column :email
-    column :latitude
-    column :longitude
+    column :address
     actions
   end
 
   form do |f|
     f.inputs "Update Supplier" do
-      f.input :email
-      f.input :latitude
-      f.input :longitude
       f.input :name
       f.input :phone
-      f.input :address
+      f.input :email
+      f.input :address, as: :text
       f.actions
     end
   end
