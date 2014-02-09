@@ -1,4 +1,4 @@
-=link_to "Home", root_path, class: "btn btn-primary"
+=link_to "Home", root_path, class: "btn btn-warning"
 - if current_supplier || current_admin
   = link_to "Log out", destroy_supplier_session_url, method: :delete, class: "btn btn-info pull-right"
   = link_to "Admin", new_admin_session_path, class: "btn btn-success pull-right" unless current_supplier || current_admin
