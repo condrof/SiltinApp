@@ -39,6 +39,8 @@ end
 
 group :development, :test do
     gem 'rspec-rails', '~> 3.0.0.beta'
+    gem "better_errors"
+    gem "binding_of_caller"
 end
 
 gem 'bootstrap-sass'

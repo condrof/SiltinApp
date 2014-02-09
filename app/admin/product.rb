@@ -14,4 +14,29 @@ ActiveAdmin.register Product do
   #  permitted
   # end
 
+  index do |product|
+    selectable_column 
+    column :id
+    column :name
+    default_actions
+  end
+
+  show do
+    attributes_table do
+      row :id
+      row :name
+      row :unit_id
+      row "Suppliers" do |product|
+        product.suppliers.count
+        # product.suppliers.each do |supplier|
+        #   #link_to supplier.email, admin_supplier_path(supplier)
+        #   supplier.email
+        # end
+      end
+      row :image do |product|
+        image_tag product.image.url, alt: product.name + " image"
+      end
+    end
+  end
+
 end

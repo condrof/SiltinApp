@@ -14,11 +14,18 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   %body
-    - if current_supplier
-      = link_to "Log out", destroy_supplier_session_url, method: :delete, class: "btn btn-info pull-right"
-    - else
-      = link_to "Admin", new_admin_session_url, class: "btn btn-success pull-right"
-      = link_to "Supplier", new_supplier_session_url, class: "btn btn-warning pull-right"
-    = #render 'header'
-    = flash_messages
-    = yield
+    .col-lg-12
+      .container
+        .row
+          =link_to "Home", root_path, class: "btn btn-primary"
+          - if current_supplier || current_admin
+            = link_to "Log out", destroy_supplier_session_url, method: :delete, class: "btn btn-info pull-right"
+            = link_to "Admin", new_admin_session_path, class: "btn btn-success pull-right" unless current_supplier || current_admin
+            = link_to "Admin", admin_dashboard_path, class: "btn btn-success pull-right" if current_supplier || current_admin
+          - else
+            = link_to "Admin", new_admin_session_path, class: "btn btn-success pull-right"
+            = link_to "Supplier", new_supplier_session_url, class: "btn btn-warning pull-right"
+          = #render 'header'
+          = flash_messages
+        .row.spacer
+          = yield
