@@ -16,7 +16,7 @@ end
 
 Fabricator(:supplier) do
   name { Faker::Company.name }
-  phone { Faker::PhoneNumber.phone_number }
+  phone { Faker::PhoneNumber.cell_phone }
   email { Faker::Internet.safe_email }
   created_at { DateTime.now }
   updated_at { DateTime.now }
