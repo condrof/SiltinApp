@@ -26,6 +26,6 @@
             = link_to "Admin", new_admin_session_path, class: "btn btn-success pull-right"
             = link_to "Supplier", new_supplier_session_url, class: "btn btn-warning pull-right"
           = #render 'header'
-          = flash_messages
         .row.spacer
+          = flash_messages
           = yield
