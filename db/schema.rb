@@ -81,6 +81,9 @@ ActiveRecord::Schema.define(version: 20140209134129) do
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "name"
+    t.string   "phone"
+    t.text     "address"
   end
 
   add_index "suppliers", ["email"], name: "index_suppliers_on_email", unique: true, using: :btree
