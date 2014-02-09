@@ -7,6 +7,7 @@ gem 'rails', '4.0.2'
 gem 'pg'
 gem 'devise'
 gem "twilio-rb"
+gem "geokit", github: 'chrismcg/geokit'
 gem "geokit-rails"
 gem 'activeadmin', github: 'gregbell/active_admin'
 
