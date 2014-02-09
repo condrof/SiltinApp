@@ -17,7 +17,7 @@ ActiveAdmin.register Supplier do
       f.input :phone
       f.input :email
       f.input :address, as: :text
-      f.input :description
+      f.input :description, as: :text
       f.actions
     end
   end
