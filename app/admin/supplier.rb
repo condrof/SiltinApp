@@ -1,6 +1,6 @@
 ActiveAdmin.register Supplier do
 
-  permit_params :email, :address, :name, :phone
+  permit_params :email, :address, :name, :phone, :description
 
   index do |supplier|
     column :id
@@ -17,6 +17,7 @@ ActiveAdmin.register Supplier do
       f.input :phone
       f.input :email
       f.input :address, as: :text
+      f.input :description
       f.actions
     end
   end
