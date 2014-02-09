@@ -1,6 +1,6 @@
 ActiveAdmin.register Product do
 
-  permit_params :name, :unit_id, :image
+  permit_params :name, :unit_id, :image, :description
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -15,7 +15,7 @@ ActiveAdmin.register Product do
   # end
 
   index do |product|
-    selectable_column 
+    selectable_column
     column :id
     column :name
     default_actions
@@ -26,6 +26,7 @@ ActiveAdmin.register Product do
       row :id
       row :name
       row :unit_id
+      row :description
       row "Suppliers" do |product|
         product.suppliers.count
         # product.suppliers.each do |supplier|

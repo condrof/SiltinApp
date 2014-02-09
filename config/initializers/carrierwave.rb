@@ -38,7 +38,7 @@ CarrierWave.configure do |config|
     :aws_secret_access_key  => 'oszHawcOeQb1d9TVZmGSrUbjASai33dLvWAdjwlg',                        # required
     :region                 => 'eu-west-1',                  # optional, defaults to 'us-east-1'
   }
-  config.fog_directory  = 'images.siltin'                     # required
+  config.fog_directory  = 'siltinapp'                     # required
   config.fog_public     = false                                   # optional, defaults to true
   config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
 end

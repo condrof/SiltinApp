@@ -16,9 +16,8 @@
   %body
     .col-lg-12
       .container
-        .row
+        .row.spacer
           = render 'layouts/header'
           = flash_messages
-        .row.spacer
-          = flash_messages
+          %hr
           = yield

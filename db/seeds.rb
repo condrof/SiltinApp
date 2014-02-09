@@ -15,6 +15,8 @@ ActiveRecord::Base.connection.tables.each do |table|
 end
 
 Fabricator(:supplier) do
+  name { Faker::Company.name }
+  phone { Faker::PhoneNumber.phone_number }
   email { Faker::Internet.safe_email }
   created_at { DateTime.now }
   updated_at { DateTime.now }
@@ -50,14 +52,16 @@ products = [
   Fabricate(:product, name: "Latrine roof"),
 ]
 
-latlong = [ { lat: 8.484146, long: -13.22867  }, # Freetown
-             { lat: 8.1605556, long: -12.4333333  }, # Moyamba
-             { lat: 7.288388999999999, long: -11.523228  }, # Bo
-             { lat: 8.42109, long: -12.53414  }, # Makeni
-             { lat: 9.5833333, long:  -11.55  } ] # Kabala
+seed_addresses = [
+  "1, Tikonko Road, Bo, Sierra Leone",
+  "1, Charlotte Street, Freetown, Sierra Leone",
+  "Moyamba, Sierra Leone",
+  "Makeni, Sierra Leone",
+  "Kabala, Sierra Leone",
+]
 
 suppliers = []
-2.times { latlong.each {|l| suppliers << Fabricate(:supplier, latitude: l[:lat], longitude: l[:long]) } }
+2.times { seed_addresses.each { |a| suppliers << Fabricate(:supplier, address: a) } }
 
 ["kg", "nr", "m2"].each {|new_name| Fabricate(:unit, name: new_name )}
 
