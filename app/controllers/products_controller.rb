@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
+    @inventories = Inventory.where(product_id: @product.id).includes(:supplier)
   end
 
   # GET /products/new

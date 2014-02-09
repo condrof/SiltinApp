@@ -1,0 +1,10 @@
+- @inventories.each_slice(4) do |slice|
+  .row
+    - slice.each do |inventory|
+      .col-sm-6.col-md-4.col-lg-3.list-item
+        .thumbnail
+          %h3= link_to inventory.supplier.name, inventory
+          %p= inventory.supplier.address
+          %p= inventory.supplier.phone
+          %h2= inventory.price
+

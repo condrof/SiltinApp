@@ -1,10 +1,15 @@
 .row
   .col-lg-4.col-md-6.col-sm-12
-    = image_tag @product.image.url(:medium), alt: @product.name if @product.image.url
+    = image_tag @product.image.url(:thumb), alt: @product.name if @product.image.url
   .col-lg-8.col-med-6.col-sm-12
     %h2= @product.name
     %p= @product.description
 
 .row
-  %h1 Suppliers in your area
-  =#render partial: "inventories/list"
+  %hr
+  -if @inventories.empty?
+    %h1 No suppliers in your area offer this product :(
+  -else
+    %h1 Suppliers in your area
+    =render partial: "inventories/list", locals:{inventories: @inventories}
+
