@@ -2,11 +2,11 @@ module ApplicationHelper
   def flash_messages
     content = []
     if flash[:warning]
-      content << content_tag(:div, flash[:warning], class: 'alert alert-danger')
+      content << content_tag(:div, flash[:warning], class: 'alert alert-danger alert-dismissable')
     end
 
     if flash[:notice]
-      content << content_tag(:div, flash[:notice], class: 'alert alert-info')
+      content << content_tag(:div, flash[:notice], class: 'alert alert-info alert-dismissable')
     end
     content.inject(:<<)
   end
