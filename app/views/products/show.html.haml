@@ -8,8 +8,10 @@
 .row.inventories
   %hr
   -if @inventories.empty?
-    %h1.text-center No suppliers in your area offer this product :(
+    .alert.alert-info
+      %h2.text-center No suppliers in your area offer this product :(
   -else
-    %h1.text-center  Suppliers in your area
+    .alert.alert-info
+      %h2.text-center  Suppliers in your area
     =render partial: "inventories/list", locals:{inventories: @inventories}
 
