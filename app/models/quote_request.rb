@@ -23,7 +23,7 @@ class QuoteRequest
     else
       message = ["Nearest suppliers for #{product}"]
       inventories.map do |inventory|
-        message << "#{inventory.supplier.email}: #{"%0.2f" % inventory.price}"
+        message << "#{inventory.supplier.name}: $#{"%0.2f" % inventory.price} #{inventory.supplier.phone}"
       end
       message.join("\n")
     end
