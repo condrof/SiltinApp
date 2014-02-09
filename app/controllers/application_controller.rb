@@ -23,4 +23,13 @@ class ApplicationController < ActionController::Base
      @current_ability ||= Ability.new(current_user)
   end
 
+protected
+
+  def devise_parameter_sanitizer
+    if resource_class == Supplier
+      Supplier::ParameterSanitizer.new(Supplier, :supplier, params)
+    else
+      super # Use the default one
+    end
+  end
 end

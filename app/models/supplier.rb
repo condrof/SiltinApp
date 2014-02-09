@@ -8,4 +8,8 @@ class Supplier < ActiveRecord::Base
   has_many :products, through: :inventories, :foreign_key => :supplier_id
 
   acts_as_mappable lat_column_name: :latitude, lng_column_name: :longitude
+
+  validates :name, presence: true
+  validates :phone, presence: true
+  validates :address, presence: true
 end
