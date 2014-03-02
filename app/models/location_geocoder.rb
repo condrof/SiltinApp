@@ -5,6 +5,6 @@ class LocationGeocoder
   end
 
   def self.geocode(place)
-    Geokit::Geocoders::GoogleGeocoder.geocode(place)
+    Geokit::Geocoders::MultiGeocoder.geocode(place)
   end
 end
