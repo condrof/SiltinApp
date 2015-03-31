@@ -10,9 +10,9 @@
 
 #     # Configuration for Amazon S3
 #     :provider              => 'AWS',
-#     :aws_access_key_id     => ENV['AKIAJVGSSAVNYCW4CPGA'],
-#     :aws_secret_access_key => ENV['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'],
-#     :region                => ENV['eu-west-1']
+#     :aws_access_key_id     => ENV['AWS_ACCESS_KEY_ID'],
+#     :aws_secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
+#     :region                => ENV['AWS_REGION']
 #   }
 
 #   # For testing, upload files to local `tmp` folder.
@@ -34,9 +34,9 @@
 CarrierWave.configure do |config|
   config.fog_credentials = {
     :provider               => 'AWS',                        # required
-    :aws_access_key_id      => 'AKIAJVGSSAVNYCW4CPGA',                        # required
-    :aws_secret_access_key  => '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',                        # required
-    :region                 => 'eu-west-1',                  # optional, defaults to 'us-east-1'
+    :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],                        # required
+    :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY'],                        # required
+    :region                 => ENV['AWS_REGION'],                  # optional, defaults to 'us-east-1'
   }
   config.fog_directory  = 'siltinapp'                     # required
   config.fog_public     = false                                   # optional, defaults to true
