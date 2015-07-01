@@ -35,6 +35,7 @@ class QuoteRequest
       where(distance_sql).
       includes(:product, :supplier).
       limit(5).
+      references(:products).
       order("price ASC")
   end
 
